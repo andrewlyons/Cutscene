@@ -30,6 +30,7 @@ class InboxCollectionViewController: UICollectionViewController, PHPhotoLibraryC
         super.viewDidLoad()
         images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self)
+        collectionView.allowsSelection = true
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -77,6 +78,8 @@ class InboxCollectionViewController: UICollectionViewController, PHPhotoLibraryC
 //        case "cameraSegue":
             var toViewControler = segue.destinationViewController as CameraViewController
             // TODO: change to get the image from the tapped cell.
+            var selectedItems = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
+            println(selectedItems.count)
             toViewControler.originalImage = UIImage(named: "original_scene2")
             
 //        default:
